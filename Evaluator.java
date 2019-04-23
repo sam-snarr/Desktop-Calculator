@@ -58,7 +58,7 @@ public class Evaluator {
 
     public Double evaluate() {
         int token = lexer.nextToken();
-        String tokenText = lexer.text;
+        String tokenText = lexer.text.trim();
 
         String firstVar = "";
         boolean seenNum = false;
@@ -120,7 +120,7 @@ public class Evaluator {
             }
 
             token = lexer.nextToken();
-            tokenText = lexer.text;
+            tokenText = lexer.text.trim();
         }
         if(stack.size()!=1 || token == 100 ){
             return null;
@@ -146,9 +146,7 @@ public class Evaluator {
         while (true) {
             Double value = evaluate();
             if (value == null) {
-//                System.out.println("Invalid ");
-//                lexer.flush();
-                error("Invalid");
+                error("**Invalid**");
             }
             else{
                 System.out.println(value);
@@ -253,8 +251,7 @@ public class Evaluator {
             while(state>=0){
 
                 c = nextChar();
-
-                text+=c;
+                text += c;
 
                 if(state==0){
                     //text += c;
